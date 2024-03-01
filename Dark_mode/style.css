@@ -1,0 +1,54 @@
+#oval{
+    width: 160px;
+    height: 70px;
+    background-color: black;
+    border-radius: 35px;
+    display: flex;
+    justify-content: space-between;
+    transition: background-color 0.5s ease;
+    
+}
+
+body{
+    transition: background-color 0.5s ease; 
+}
+.over{
+width: 100%;
+display: flex;
+justify-content: space-between;
+flex-direction: column;
+height: 300px;
+align-items: center;
+justify-content: center;
+}
+
+#sun{
+    width: 60px;
+    height: 60px;
+    top: 30px;
+    left: 30px;
+    
+}
+
+#moon{
+    width: 60px;
+    height: 60px;
+
+}
+#circle {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background-color: white;
+    z-index: 1;
+    position: absolute;
+    margin-left: 3px;
+    margin-top: 3px;
+    animation-duration: 2s;
+    transition: margin-left 0.5s ease; /* Added transition property */
+}
+
+h1{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 60px;
+}
