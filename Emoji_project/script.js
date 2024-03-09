@@ -40,13 +40,12 @@ function getdata(event) {
     })
 
     displayEmoji(filteredData);
-    // console.log(query);
 }
 
 
 window.addEventListener("load", () => {
     displayEmoji();
 })
-// if user search for emoji
+
 const userInput = document.getElementById("inputspace");
 userInput.addEventListener("input", getdata)
