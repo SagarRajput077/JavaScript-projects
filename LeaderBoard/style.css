@@ -1,0 +1,167 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    text-align: center;
+    font-family: sans-serif;
+    min-height: 100vh;
+    font-weight: 300;
+    display: grid;
+    justify-content: center;
+    padding: 3em 0;
+   
+}
+
+
+    #myVideo {
+        width: 100vw;
+        height: 100vh;
+        object-fit: cover;
+        position: fixed;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        z-index: -1;
+    }
+
+main{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: 2em;
+}
+
+.main_title{
+    font-size: 1.5em;
+    width: 150%;
+    color: rgb(0, 0, 0);
+    background-color: rgba(247, 247, 247, 0.523);
+    box-shadow: 0px 0px 5px 2px white;
+}
+
+.main_form{
+    display: grid;
+    gap: .6em;
+    justify-items: center;
+}
+
+input{
+    all: unset;
+    padding: .5em .8em;
+    width: 80%;
+    background-color: rgb(233, 233, 233);
+    text-align: start;
+    color: rgb(0, 0, 0);
+   box-shadow: 0px 5px 5px 2px black; 
+    outline: none;
+}
+
+
+
+.main_error-prompter{
+    color: #ff7864;
+    font-weight: 700;
+    font-size: 1em;
+    display: none;
+}
+
+button:not(.main_form-submit-btn){
+    all: unset;
+    border-radius: 50%;
+    background: rgb(255,153,200);
+    width: 60px;
+    height: 60px;
+    transition: all .5s ease;
+}
+
+.main_form-submit-btn{
+    all: unset;
+    width: 10em;
+    background: rgba(255, 0, 0, 0.507);
+    padding: .7em 0;
+    transition: all .5s ease;
+    border-radius: 15px;
+    color: white;
+}
+
+.main_form-submit-btn:hover {
+    background-color: skyblue;
+    cursor: pointer;
+    color: white;
+    border: 0.5px solid darkblue;
+}
+
+button:active{
+    transform: scale(.95) translateY(5px);
+    filter: brightness(.9);
+}
+
+button:hover{
+    background-color: rgb(0,119,182);
+}
+
+.main_scoreboard-wrapper{
+    width: 100%;
+    display: grid;
+    justify-items: center;
+    gap: 1em;
+
+}
+
+.main_scoreboard{
+    display: grid;
+    justify-items: center;
+    gap: .9em;
+    width: 90%;
+    height: 80px;
+    background: rgb(239, 239, 233);
+    text-transform: uppercase;
+    border-radius: 10px;
+    box-shadow: 0px 5px 5px 2px black;
+}
+
+.main_player-name{
+    font-weight: 400;
+}
+
+.main_time-stamp{
+    color: #686868;
+    font-size: .8em;
+}
+
+.main_scoreboard-btn-container{
+    margin: 1em;
+    display: flex;
+    gap: .5em;
+}
+.main_player-country {
+    text-align: center;
+}
+
+
+@media (min-width:35.25em){
+    .main_title{
+        font-size: 2.5rem;
+        font-weight: 500;
+        font-variant: small-caps;
+    }
+
+    .main_form{
+        display: flex;
+    }
+
+    .main_scoreboard{
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+    }
+
+    input{
+        width: 10em;
+    }
+
+}
