@@ -8,3 +8,7 @@
 <h3><a href="https://saggyintoit.github.io/JavaScriptProjects/Emoji_project/index.html">Emoji Search</a></h3>
 <h3><a href="https://saggyintoit.github.io/JavaScriptProjects/Cart/index.html">Your Cart</a></h3>
 <h3><a href="https://saggyintoit.github.io/JavaScriptProjects/LeaderBoard/index.html">LeaderBoard</a></h3>
+<h3><a href="https://saggyintoit.github.io/JavaScriptProjects/DigitalClock/index.html">DigitalClock</a></h3>
+<h3><a href="https://saggyintoit.github.io/JavaScriptProjects/Stopwatch/index.html">Stopwatch</a></h3>
+
+
