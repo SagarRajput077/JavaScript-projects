@@ -1,136 +1,64 @@
-let searchText='13';
-
-function searchHandler(isShowAll){
-    loading(true);
-    const searchField=document.getElementById("searchField");
-    searchText=searchField.value;
-    loadPhone(searchText,isShowAll);
-    
+function getRandomTime(){
+    return Math.floor(Math.random() * 5000) + 2000 //random time between 2 to 7 sec
 }
-const loading= (isLoading)=>
-{
-    
-    const loading= document.getElementById("loading");
-    if(isLoading)
-    {
-        loading.classList.remove('hidden');
-    }
-    else{
-        loading.classList.add('hidden');
-    }
 
+function getRandomOrderId(){
+    return Math.floor(Math.random() * 1000) + 100;  //random ID between 100 to 1099
 }
-// function searchHandler2(){
-//     const searchField=document.getElementById("searchField2");
-//     searchText=searchField.value;
-//     loadPhone(searchText);
-// }
-const loadPhone= async(searchText,isShowAll)=>{
-    const res = await fetch(`https://openapi.programming-hero.com/api/phones?search=${searchText}`);
-    const data =await res.json();
-    const phones = data.data;
-    displayPhones(phones,isShowAll);
-    
-}
-loadPhone(searchText);
-const displayPhones = (phones,isShowAll)=>{
-    //console.log(phones);
-    const phoneContainer= document.getElementById("phone-container");
-    phoneContainer.textContent='';
-    
-    const showAll= document.getElementById("showALLBtn");
-    if(phones.length>12 && !isShowAll)
-    {
-        showAll.classList.remove('hidden');
-        
-        
-    }
-    else
-    {
-        showAll.classList.add('hidden');
-    }
-    //display first 10
-    if(!isShowAll)
-    {
-        phones=phones.slice(0,12);
-    }
-    
-    phones.forEach(phone => {
-        //console.log(phone);
-        //1 create a div
-        const phoneCard=document.createElement('div');
-        phoneCard.classList=`card bg-base-100 shadow-xl p-5`;
-        phoneCard.innerHTML=`
-        <figure class="px-10 pt-10">
-                      <img src="${phone.image}" alt="phone" class="rounded-xl" />
-                    </figure>
-                    <div class="card-body items-center text-center">
-                      <h2 class="card-title">${phone.phone_name}</h2>
-                      <p>There are many variations of passages of available, but the majority have suffered</p>
-                      <div class="card-actions">
-                        <button onclick="showDetailsHandler('${phone.slug}')" class="btn btn-primary text-white">Show Details</button>
-                      </div>
-                    </div>
 
-        `;
-        phoneContainer.appendChild(phoneCard);
-        
+document.getElementById('orderButton').addEventListener('click', function(){
+    const selecteditems = [];
+    const checkBoxes = document.getElementsByName('foodItem');
+
+    checkBoxes.forEach(function(checkbox){
+        if(checkbox.checked){
+            selecteditems.push(checkbox.value);
+        }
     });
-    //hide loading spinner
-    loading(false);
-    // function noItem(isNoItem)
-    // {
-    //     if(isNoItem){
-    //         const noItemContainer=document.getElementById("noItem");
-    //         noItemContainer.classList.remove('hidden');
-    //     }
-    //     else{
-    //         noItemContainer.classList.add('hidden');
-    //     }
-    // }
-}
 
-// show All Button
-function showBtn()
-{
-   searchHandler(true);
-}
-// Show Details
-const showDetailsHandler = async (id)=>{
-    //console.log(id);
-    // load data
-    const res= await fetch(`https://openapi.programming-hero.com/api/phone/${id}`);
-    const data=await res.json();
-    
-    const phone=data.data;
-    showPhoneDetails(phone);
-    //console.log(phone);
-}
-const showPhoneDetails=(details)=>{
-    my_modal.showModal();
-    const modelName= document.getElementById('detailsPhoneName');
-    const brandName= document.getElementById('detailsBrand');
-    const detailsSpec= document.getElementById('detailsSpec');
-    const releaseDate= document.getElementById('releaseDate');
-    const imageDiv= document.getElementById('imgContainer');
-
-    imageDiv.innerHTML=`<img src="${details.image}" alt="">`;
-    modelName.innerText=details.name;
-    brandName.innerText=`Brand: ${details.brand}`;
-    const features=details.mainFeatures;
-    //console.log(features.storage);
-    console.log(details.image);
-    let string="";
-    for (const key in features) {
-
-        //detailsSpec.innerHTML=`${features[key]} <br>`;
-
-        //detailsSpec.innerText=`${features[key]} <br>`;
-        //console.log(`${key}:${features[key]}`);
-        string=string+`${key}: ${features[key]} \n`;
-
+    if(selecteditems.length === 0){
+        alert("Please select atleast one item");
+        return;
     }
-    detailsSpec.innerText=string;
-    releaseDate.innerText=`${details.releaseDate}`;
-    
-}
+
+    const orderButton = document.getElementById('orderButton');
+    orderButton.disabled = true;
+
+    const foodImage = document.getElementById('foodImage');
+    const orderIdElement = document.getElementById('orderId');
+    const orderIdValueElement = document.getElementById('orderIdValue');
+
+    orderIdElement.style.display = 'none';
+    foodImage.style.display = 'none';
+
+    const promise = new Promise(function(resolve, reject){
+        setTimeout(function(){
+            resolve()
+        }, getRandomTime())
+    });
+
+    promise.then(function(){
+        const orderId = getRandomOrderId();
+        orderIdValueElement.textContent = orderId;
+        orderIdElement.style.display = 'block';
+
+        const foodToShow = selecteditems[Math.floor(Math.random() * selecteditems.length)];
+
+        switch(foodToShow){
+            case 'Burger':
+                foodImage.src= 'https://images.unsplash.com/photo-1568901346375-23c9450c58cd?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8YnVyZ2VyfGVufDB8fDB8fHww&auto=format&fit=crop&w=800&q=60'
+                break;
+            case 'Fries':
+                foodImage.src = 'https://images.unsplash.com/photo-1576107232684-1279f390859f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OXx8ZnJpZXN8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=800&q=60'
+                break;
+            case 'Drink':
+                foodImage.src = 'https://images.unsplash.com/photo-1437418747212-8d9709afab22?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8ZHJpbmt8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=800&q=60'
+                break;
+            default:
+                foodImage.src = 'https://plus.unsplash.com/premium_photo-1663852297267-827c73e7529e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8Zm9vZHxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=800&q=60'
+        }
+
+        foodImage.style.display = 'block';
+        orderButton.disabled = false;
+    });
+});
