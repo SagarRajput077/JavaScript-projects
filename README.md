@@ -12,6 +12,8 @@
 <h3><a href="https://saggyintoit.github.io/JavaScriptProjects/Stopwatch/index.html">Stopwatch</a></h3>
 <h3><a href="https://saggyintoit.github.io/JavaScriptProjects/burgerking/index.html">Burgerking</a></h3>
 <h3><a href="https://saggyintoit.github.io/JavaScriptProjects/WeekTest4/index.html">Phone</a></h3>
+<h3><a href="https://saggyintoit.github.io/JavaScriptProjects/imageSearch/index.html">ImageSearch</a></h3>
+<h3><a href="https://saggyintoit.github.io/JavaScriptProjects/dadJoke/index.html">DAD Joke Generator</a></h3>
 
 
 
