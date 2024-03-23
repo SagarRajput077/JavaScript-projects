@@ -5,13 +5,6 @@ const searchBtn = document.querySelector('.searchBtn')
 
 const pokemon_count = 151
 
-
-
-
-
-
-
-
 const bg_color = {
     grass: '#8BD369',
     fire: '#FF603F',
