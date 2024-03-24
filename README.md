@@ -16,7 +16,7 @@
 <h3><a href="https://saggyintoit.github.io/JavaScriptProjects/dadJoke/index.html">DAD Joke Generator</a></h3>
 <h3><a href="https://saggyintoit.github.io/JavaScriptProjects/PokeDEX/index.html">PokeDEX</a></h3>
 <h3><a href="https://saggyintoit.github.io/JavaScriptProjects/Local_Storage/index.html">Local</a></h3>
-<h3><a href="https://saggyintoit.github.io/JavaScriptProjects/Card/index.html">Card</a></h3>
+<h3><a href="https://saggyintoit.github.io/JavaScriptProjects/card/index.html">Card</a></h3>
 
 
 
