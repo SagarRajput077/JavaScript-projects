@@ -1,127 +1,60 @@
-let searchText='13';
+let one = document.getElementById('one');
+let two = document.getElementById('two');
+let searchval = document.getElementById('searchval')
+let searchbutton = document.getElementById('search');
+let showdetails = document.querySelectorAll('#show-Details');
+// let body = document.querySelector('body');
+let maindisplay = document.getElementById('main1');
+let close = document.getElementById('close').addEventListener('click', () => {
+    maindisplay.style.visibility = 'hidden';
 
-function searchHandler(isShowAll){
-    loading(true);
-    const searchField=document.getElementById("searchField");
-    searchText=searchField.value;
-    loadPhone(searchText,isShowAll);
-    
-}
-const loading= (isLoading)=>
-{
-    
-    const loading= document.getElementById("loading");
-    if(isLoading)
-    {
-        loading.classList.remove('hidden');
-    }
-    else{
-        loading.classList.add('hidden');
-    }
+})
+
+for (let i = 0; i < showdetails.length; i++) {
+    showdetails[i].addEventListener('click', () => {
+        console.log("add");
+        // maindisplay.style.zIndex='-10';
+        maindisplay.style.visibility = 'visible';
+    })
 
 }
-const loadPhone= async(searchText,isShowAll)=>{
-    const res = await fetch(`https://openapi.programming-hero.com/api/phones?search=${searchText}`);
-    const data =await res.json();
-    const phones = data.data;
-    displayPhones(phones,isShowAll);
-    
-}
-loadPhone(searchText);
-const displayPhones = (phones,isShowAll)=>{
-    const phoneContainer= document.getElementById("phone-container");
-    phoneContainer.textContent='';
-    
-    const showAll= document.getElementById("showALLBtn");
-    if(phones.length>12 && !isShowAll)
-    {
-        showAll.classList.remove('hidden');
-        
-        
-    }
-    else
-    {
-        showAll.classList.add('hidden');
-    }
-    if(!isShowAll)
-    {
-        phones=phones.slice(0,12);
-    }
-    
-    phones.forEach(phone => {
-        const phoneCard=document.createElement('div');
-        phoneCard.classList=`card bg-base-100 shadow-xl p-5`;
-        phoneCard.innerHTML=`
-        <figure class="px-10 pt-10">
-                      <img src="${phone.image}" alt="phone" class="rounded-xl" />
-                    </figure>
-                    <div class="card-body items-center text-center">
-                      <h2 class="card-title">${phone.phone_name}</h2>
-                      <p>There are many variations of passages of available, but the majority have suffered</p>
-                      <div class="card-actions">
-                        <button onclick="showDetailsHandler('${phone.slug}')" class="btn btn-primary text-white">Show Details</button>
-                      </div>
-                    </div>
 
-        `;
-        phoneContainer.appendChild(phoneCard);
+
+async function displysearch() {
+    one.innerHTML = "";
+    // console.log(searchval.value)
+    let res = await fetch(`https://openapi.programming-hero.com/api/phones?search=${searchval.value}`);
+    let data1 = await res.json();
+
+    let appenda = "";
+    data1.data.forEach(element => {
+
+
+
+        appenda += `<div class="fluid" style="text-align:center;width:30vw ; height:60vh; box-shadow: 5px  5px 10px;margin-top:30px;align-self:center;padding:2%;">
+       
+             
+                  <img class="" src="${element.image}" alt="Card image cap" height="230px" width="180px" style="margin-top:3%; padding: 2%;">
         
+                   <h4>${element.phone_name}</h4>
+                 <p style="font-size: larger;width:80%;margin:auto;">There are many variations of passages of available, but the majority have
+                     suffered
+                       </p>
+                   <button id="show-Details1" style="width:150px;
+                   height: 50px;
+                   background-color:rgb(42, 42, 239);
+                   border: 2px solid rgb(42, 42, 239);
+                   border-radius: 5px;
+                   color: white;
+                   font-weight: bold;margin-top:15px;">SHOW DETAILS</button>
+           
+        </div>
+        </div>
+    </div> 
+    `
     });
-   
-    loading(false);
-    // function noItem(isNoItem)
-    // {
-    //     if(isNoItem){
-    //         const noItemContainer=document.getElementById("noItem");
-    //         noItemContainer.classList.remove('hidden');
-    //     }
-    //     else{
-    //         noItemContainer.classList.add('hidden');
-    //     }
-    // }
+    two.innerHTML = appenda;
+
 }
 
-// show All Button
-function showBtn()
-{
-   searchHandler(true);
-}
-// Show Details
-const showDetailsHandler = async (id)=>{
-    //console.log(id);
-    // load data
-    const res= await fetch(`https://openapi.programming-hero.com/api/phone/${id}`);
-    const data=await res.json();
-    
-    const phone=data.data;
-    showPhoneDetails(phone);
-    //console.log(phone);
-}
-const showPhoneDetails=(details)=>{
-    my_modal.showModal();
-    const modelName= document.getElementById('detailsPhoneName');
-    const brandName= document.getElementById('detailsBrand');
-    const detailsSpec= document.getElementById('detailsSpec');
-    const releaseDate= document.getElementById('releaseDate');
-    const imageDiv= document.getElementById('imgContainer');
-
-    imageDiv.innerHTML=`<img src="${details.image}" alt="">`;
-    modelName.innerText=details.name;
-    brandName.innerText=`Brand: ${details.brand}`;
-    const features=details.mainFeatures;
-    //console.log(features.storage);
-    console.log(details.image);
-    let string="";
-    for (const key in features) {
-
-        //detailsSpec.innerHTML=`${features[key]} <br>`;
-
-        //detailsSpec.innerText=`${features[key]} <br>`;
-        //console.log(`${key}:${features[key]}`);
-        string=string+`${key}: ${features[key]} \n`;
-
-    }
-    detailsSpec.innerText=string;
-    releaseDate.innerText=`${details.releaseDate}`;
-    
-}
+searchbutton.addEventListener('click', displysearch);
